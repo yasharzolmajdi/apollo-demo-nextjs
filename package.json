@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "apollo": "apollo client:codegen ./interfaces --outputFlat --target=typescript --config=apollo.config.js --globalTypesFile=./interfaces/globalTypes.ts"
   },
   "dependencies": {

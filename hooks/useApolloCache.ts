@@ -7,13 +7,19 @@ export default function useApolloCache<D, V = undefined>(query: DocumentNode) {
   function updateList(newData: (currentData: D | null) => D, variables?: V) {
     const data = client.readQuery<D>({ query, variables });
 
+    createGet(newData(data), variables);
+  }
+
+  function createGet(data: D, variables?: V) {
     client.writeQuery({
       query,
-      data: newData(data),
+      variables,
+      data,
     });
   }
 
   return {
     updateList,
+    createGet,
   };
 }
